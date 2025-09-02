@@ -2,8 +2,9 @@ import './App.css'
 import React from 'react'
 
 function Navbar() {
-  const sectionIds = ['intro', 'background', 'achievements', 'projects', 'hobby', 'contact']
-  const [active, setActive] = React.useState('intro')
+  const sectionIds = ['intro', 'background', 'achievements', 'projects', 'hobby', 'contact'];
+  const [active, setActive] = React.useState('intro');
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
@@ -21,7 +22,18 @@ function Navbar() {
       if (el) observer.observe(el)
     })
     return () => observer.disconnect()
-  }, [])
+  }, []);
+
+  // Prevent body scroll when menu is open
+  React.useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    // Cleanup function to reset on unmount
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isMenuOpen]);
 
   return (
     <header className="navbar" role="navigation" aria-label="Primary">
@@ -33,9 +45,26 @@ function Navbar() {
         </svg>
         My Portfolio
       </a>
-      <nav>
+      <button
+        className={`menu-toggle ${isMenuOpen ? 'open' : ''}`}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle menu"
+        aria-expanded={isMenuOpen}
+        aria-controls="primary-navigation"
+      >
+        <svg className="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 6H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M4 12H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M4 18H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <svg className="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      <nav id="primary-navigation" className={isMenuOpen ? 'open' : ''}>
         {sectionIds.map((id) => (
-          <a key={id} href={`#${id}`} aria-current={active === id ? 'true' : undefined}>
+          <a key={id} href={`#${id}`} aria-current={active === id ? 'true' : undefined} onClick={() => setIsMenuOpen(false)}>
             {id.charAt(0).toUpperCase() + id.slice(1)}
           </a>
         ))}
@@ -103,7 +132,7 @@ function Achievements() {
 
 function Projects() {
   const projects = [
-    { name: 'Portfolio Website', description: 'This site — React + Vite, responsive UI.', link: 'https://github.com/yourname/portfolio' },
+    { name: 'Portfolio Website', description: 'This site — React + Vite, responsive UI.', link: 'portfolio-g8j9vqx4e-dinesh-suthars-projects-5b4bee5e.vercel.app' },
     { name: 'Blogify---A-Simple-Blogging-Application', description: 'A simple and elegant blogging platform built with Node.js, Express, and MongoDB. Blogify allows users to sign up, create beautifully formatted blog posts with cover images, and engage with content through comments.', GithubLink: 'https://github.com/DINESHSUTHAR427/Blogify---A-Simple-Blogging-Application',websiteLink: 'https://blogify-a-simple-blogging-application-1s6q.onrender.com', },
   ]
   return (

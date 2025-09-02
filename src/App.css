@@ -80,9 +80,67 @@ main { display: grid; gap: 56px; }
 
 .footer { display: flex; justify-content: center; padding: 24px 0 8px; color: var(--muted); }
 
+/* Hamburger Menu Button */
+.menu-toggle {
+  display: none; /* Hidden on desktop */
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001; /* Above the mobile nav overlay */
+}
+
+.menu-toggle .close-icon {
+  display: none;
+}
+
+/* When menu is open, show close icon and hide hamburger */
+.menu-toggle.open .close-icon {
+  display: ruby;
+}
+
+.menu-toggle.open .hamburger-icon {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .intro {
-    flex-direction: column-reverse;
-    text-align: center;
+  .navbar nav {
+    /* Mobile nav container styles */
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(11, 12, 16, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+
+    /* Layout */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    /* Animation setup */
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    visibility: hidden;
+  }
+
+  .navbar nav.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .navbar nav a {
+    font-size: 1.5rem;
+    padding: 1rem;
+    color: var(--text);
+  }
+
+  .menu-toggle {
+    display: block;
   }
 }
