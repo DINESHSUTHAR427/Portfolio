@@ -1,6 +1,5 @@
 # Dinesh Suthar - Personal Portfolio Website
-
-![Portfolio Screenshot](https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+portfolio-6otm.vercel.app
 
 This is my personal portfolio website, built to showcase my skills, projects, and professional background as a web developer. It features a modern, single-page design with a dynamic and visually engaging user interface.
 
