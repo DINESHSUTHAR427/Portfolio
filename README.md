@@ -1,5 +1,5 @@
 # Dinesh Suthar - Personal Portfolio Website
-url => https://portfolio-6otm-mueq0yi81-dinesh-suthars-projects-5b4bee5e.vercel.app
+url => https://dineshsutharr.vercel.app/
 
 This is my personal portfolio website, built to showcase my skills, projects, and professional background as a web developer. It features a modern, single-page design with a dynamic and visually engaging user interface.
 
